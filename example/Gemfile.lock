@@ -1,0 +1,44 @@
+PATH
+  remote: ../
+  specs:
+    embulk-input-sendgrid (0.1.0)
+      rest-client (>= 1.8.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    domain_name (0.5.20190701)
+      unf (>= 0.0.5, < 1.0.0)
+    embulk (0.8.39-java)
+      bundler (>= 1.10.6)
+      liquid (~> 4.0.0)
+      msgpack (~> 1.1.0)
+      rjack-icu (~> 4.54.1.1)
+    embulk-formatter-fast_jsonl (0.1.2)
+    embulk-output-command (0.1.4)
+    http-cookie (1.0.3)
+      domain_name (~> 0.5)
+    liquid (4.0.3)
+    mime-types (3.2.2)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2019.0331)
+    msgpack (1.1.0-java)
+    netrc (0.11.0)
+    rest-client (2.0.2)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 4.0)
+      netrc (~> 0.8)
+    rjack-icu (4.54.1.1-java)
+    unf (0.1.4-java)
+
+PLATFORMS
+  java
+
+DEPENDENCIES
+  embulk
+  embulk-formatter-fast_jsonl
+  embulk-input-sendgrid!
+  embulk-output-command
+
+BUNDLED WITH
+   1.10.6

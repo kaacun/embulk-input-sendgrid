@@ -1,0 +1,10 @@
+in:
+  type: sendgrid
+  api_key: [Add your key]
+  start_date: 2020-02-06
+  end_date: 2020-02-07
+out:
+  type: command
+  command: "cat - > '/workdir/output.txt'"
+  formatter:
+    type: fast_jsonl
