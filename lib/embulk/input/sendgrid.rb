@@ -63,6 +63,7 @@ module Embulk
         end
 
         @page_builder.finish
+        {}
       end
     end
 
