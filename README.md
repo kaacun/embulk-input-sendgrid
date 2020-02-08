@@ -1,32 +1,33 @@
 # Sendgrid input plugin for Embulk
 
-TODO: Write short description here and embulk-input-sendgrid.gemspec file.
+Embulk input plugin for SendGrid stats
 
 ## Overview
 
 * **Plugin type**: input
-* **Resume supported**: yes
-* **Cleanup supported**: yes
+* **Resume supported**: no
+* **Cleanup supported**: no
 * **Guess supported**: no
 
 ## Configuration
 
-- **option1**: description (integer, required)
-- **option2**: description (string, default: `"myvalue"`)
-- **option3**: description (string, default: `null`)
+- **api_key**: SendGrid API Key that requires Stats read permission (string, required)
+- **start_date**: Start date for loading data, e.g. 2020-01-01(string, required)
+- **end_date**: End date for loading data, e.g. 2020-02-01 (string, default: `today`)
 
 ## Example
 
 ```yaml
 in:
   type: sendgrid
-  option1: example1
-  option2: example2
+  api_key: YourAPIKey
+  start_date: 2020-01-01
+  end_date: 2020-02-01
 ```
 
 
 ## Build
 
 ```
-$ rake
+$ rake build
 ```
