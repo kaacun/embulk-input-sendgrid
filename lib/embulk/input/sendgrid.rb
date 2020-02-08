@@ -1,6 +1,5 @@
 module Embulk
   module Input
-
     require 'json'
     require 'rest-client'
 
@@ -11,7 +10,7 @@ module Embulk
         task = {
           api_key: config.param(:api_key, :string),
           start_date: config.param(:start_date, :string),
-          end_date: config.param(:end_date, :string, default: '')
+          end_date: config.param(:end_date, :string, default: 'today')
         }
 
         columns = [
@@ -32,7 +31,7 @@ module Embulk
           Column.new(14, 'unique_clicks', :long),
           Column.new(15, 'unique_opens', :long),
           Column.new(16, 'unsubscribe_drops', :long),
-          Column.new(17, 'unsubscribes', :long),
+          Column.new(17, 'unsubscribes', :long)
         ]
 
         resume(task, columns, 1, &control)
@@ -48,11 +47,12 @@ module Embulk
       def run
         max_category_limit = 100
 
-        date = Date.parse(@task[:start_date])
-        end_date = @task[:end_date] != "" ? Date.parse(@task[:end_date]) : Date.today
+        date = @task[:start_date] == 'today' ? Date.today : Date.parse(@task[:start_date])
+        end_date = @task[:end_date] == 'today' ? Date.today : Date.parse(@task[:end_date])
+        endpoint = 'https://api.sendgrid.com/v3/categories/stats/sums'
 
-        while date <= end_date do
-          json = RestClient.get("https://api.sendgrid.com/v3/categories/stats/sums?start_date=#{date.strftime("%Y-%m-%d")}&limit=#{max_category_limit}", {:Authorization => "Bearer #{@task[:api_key]}", :content_type => 'application/json'})
+        while date <= end_date
+          json = RestClient.get(endpoint, { params: { start_date: date.strftime("%Y-%m-%d"), limit: max_category_limit }, Authorization: "Bearer #{@task[:api_key]}", content_type: 'application/json' })
           results = JSON.parse(json)
 
           results["stats"].each do |metrics|
@@ -66,6 +66,5 @@ module Embulk
         {}
       end
     end
-
   end
 end

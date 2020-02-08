@@ -1,13 +1,13 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "embulk-input-sendgrid"
-  spec.version       = "0.1.1"
-  spec.authors       = [""]
+  spec.version       = "0.1.2"
+  spec.authors       = ["kaacun"]
   spec.summary       = "Sendgrid input plugin for Embulk"
   spec.description   = "Loads records from Sendgrid."
   spec.email         = [""]
   spec.licenses      = ["MIT"]
-  # TODO set this: spec.homepage      = "https://github.com//embulk-input-sendgrid"
+  spec.homepage      = "https://github.com/kaacun/embulk-input-sendgrid"
 
   spec.files         = `git ls-files`.split("\n") + Dir["classpath/*.jar"]
   spec.test_files    = spec.files.grep(%r{^(test|spec)/})
